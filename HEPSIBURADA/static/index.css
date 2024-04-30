@@ -1,0 +1,172 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.up-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-right: 10%;
+    font-size: smaller;
+    flex-wrap: wrap;
+}
+.up-links li a{
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+    color: #7b7b7b;
+}
+#up-Girisimci-Kadinlar, #up-Hepsiburada-Premium{
+    color: #ed433e;
+}
+
+.mid-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+}
+
+.mid-left-header{
+    scale: 25%;
+    position: relative;
+    left: -200px;
+}
+
+.mid-mid-header{
+    position: relative;
+    left: -500px;
+}
+
+.mid-mid-header input{
+    height: 40px;
+    width: 300px;
+    position: relative;
+    top: 22px;
+}
+
+.mid-mid-header button{
+    height: 45px;
+    width: 80px;
+    position: relative;
+    left: 310px;
+    top: -23px;
+}
+
+.location{
+    position: relative;
+    left: -350px;
+    top: 30px;
+}
+
+.location label{
+    font-weight: bold;
+}
+
+.hesabim{
+    position: relative;
+    left: -150px;
+    top: 5px;
+    height: 30px;
+    background-color: #FFBF00;
+}
+
+.sepetim{
+    position: relative;
+    left: -50px;
+    top: -25px;
+    height: 30px;
+    background-color: #FFBF00;
+}
+
+.color-band{
+    display: flex;
+    flex-direction: row;
+    height: 7px;
+}
+#orange{
+    width: 608px;
+    height: 7px;
+    background-color: #ed433e;
+}
+#blue{
+    width: 228px;
+    height: 7px;
+    background-color: #49C7ED;
+}
+#purple{
+    width: 231px;
+    height: 7px;
+    background-color: #7723DB;
+}
+#green{
+    width: 231px;
+    height: 7px;
+    background-color: #27B900;
+}
+#dark-purple{
+    width: 240px;
+    height: 7px;
+    background-color: #5D196A;
+}
+
+.down-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.down-header button{
+    height: 56px;
+    background-color: white;
+    border: transparent;
+    margin-right: 15px;
+    margin-left: 15px;
+
+}
+.down-header a{
+    font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+    text-decoration: none;
+    font-weight: bold;
+    color: #646464;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Slayt gösterisi container'ı */
+.slideshow-container {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  /* Slayt */
+  .slide {
+    display: none;
+  }
+  
+  /* Önceki ve sonraki butonlar */
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bolder;
+    font-size: 50px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .prev {
+    left: 0;
+  }
+  .next {
+    right: 0;
+  }
+  /* Resimlerin tam genişlikte olmasını sağlayan stil */
+  img {
+    width: 100%;
+  }
+  

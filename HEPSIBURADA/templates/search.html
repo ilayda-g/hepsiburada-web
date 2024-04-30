@@ -1,0 +1,184 @@
+<!-- search.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/static/search.css">
+    <style>
+        /* Stil kodları buraya */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="up-header">
+            <ul class="up-links">
+                <li><a href="#">Siparişlerim</a></li>
+                <li><a href="#">Süper Fiyat, Süper Teklif</a></li>
+                <li><a href="#">Yurtdışından</a></li>
+                <li><a href="#">Kampanyalar</a></li>
+                <li><a href="#" id="up-Girisimci-Kadinlar">Girişimci Kadınlar</a></li>
+                <li><a href="#">Müşteri Hizmetleri</a></li>
+                <li><a href="#" id="up-Hepsiburada-Premium">Hepsiburada Premium</a></li>
+                <li><a href="#">Hepsiburada'da Satıcı Ol</a></li>
+            </ul>
+        </div>
+        <div class="mid-header">
+            <div class="mid-left-header">
+                <a href="/"></a>
+                <img src="https://hwp.com.tr/wp-content/uploads/2021/06/hepsiburada-1140x570.png">
+            </div>
+            <div class="mid-mid-header">
+                <div class="search-container">
+                    <form action="/search" method="GET">
+                        <input type="text" placeholder="Ara..." name="query">
+                        <button type="submit" id="search-button">Ara</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mid-right-header">
+                <!-- Ana sayfadan konum seçimi -->
+                <div class="location">
+                    <label for="location">Konum:</label>
+                    <select name="location" id="location">
+                        <!-- Burada veritabanından şehir listesi çekilip option'lar oluşturulabilir -->
+                        <option value="istanbul">İstanbul</option>
+                        <option value="ankara">Ankara</option>
+                        <option value="ankara">İzmir</option>
+                        <!-- Diğer şehirler buraya eklenebilir -->
+                    </select>
+                </div>
+                <button class="hesabim">
+                    <img src="">
+                    Hesabım ᐯ
+                </button>
+                <button class="sepetim">
+                    <img src="">
+                    Sepetim ᐯ
+                </button>
+            </div>
+        </div>
+        <div class="color-band">
+            <p id="orange"></p>
+            <p id="blue"></p>
+            <p id="purple"></p>
+            <p id="green"></p>
+            <p id="dark-purple"></p>
+        </div>
+        <div class="down-header">
+            <ul class="down-links">
+                <button>
+                    <a href="#">Elektronik</a>
+                </button>
+                <button>
+                    <a href="#">Moda</a>
+                </button>
+                <button>
+                    <a href="#">Ev, Yaşam,<br>Kırtasiye, Ofis</a>
+                </button>
+                <button>
+                    <a href="#">Oto, Bahçe, Yapı<br>Market</a>
+                </button>
+                <button>
+                    <a href="#">Anne, Bebek,<br>Oyuncak</a>
+                </button>
+                <button>
+                    <a href="#">Spor,<br>Outdoor</a>
+                </button>
+                <button>
+                    <a href="#">Kozmetik,<br>Kişisel Bakım</a>
+                </button>
+                <button>
+                    <a href="#">Süpermarket,<br>Pet Shop</a>
+                </button>
+                <button>
+                    <a href="#">Kitap, Müzik,<br>Film, Hobi</a>
+                </button>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Search Results</h1>
+
+        <!-- Yarın Kapımda Seçeneği -->
+        <button id="yarinkapimdaButton" type="button" class="btn btn-secondary">Yarın Kapımda</button>
+
+        <div class="categories">
+            <h2>Kategoriler</h2>
+            <ul id="category-buttons">
+                {% for category in categories %}
+                    <li>
+                        <button type="button" class="category" data-category="{{ category.id }}">{{ category.name }}</button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="product-list">
+            {% for product in search_results %}
+            <a href="/detail/{{ product.id }}" class="product-link">
+                <div class="product-card" data-category="{{ product.category_id }}">
+                    <img src="{{ product.image_url }}" class="product-image" alt="{{ product.name }}">
+                    <div class="product-details">
+                        <div class="product-name">{{ product.name }}</div>
+                        <div class="product-description">{{ product.description }}</div>
+                        <div class="product-price">Fiyat: {{ product.price }}</div>
+                        <!-- Diğer ürün özelliklerini buraya ekleyebilirsiniz -->
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var productNames = document.querySelectorAll('.product-name');
+            var maxNameHeight = 0;
+    
+            productNames.forEach(function(name) {
+                maxNameHeight = Math.max(maxNameHeight, name.offsetHeight);
+            });
+    
+            productNames.forEach(function(name) {
+                name.style.height = maxNameHeight + 'px';
+            });
+    
+            var productDescriptions = document.querySelectorAll('.product-description');
+            var maxDescriptionHeight = 0;
+    
+            productDescriptions.forEach(function(description) {
+                maxDescriptionHeight = Math.max(maxDescriptionHeight, description.offsetHeight);
+            });
+    
+            productDescriptions.forEach(function(description) {
+                description.style.height = maxDescriptionHeight + 'px';
+            });
+        };
+    
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category');
+            const productCards = document.querySelectorAll('.product-card');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryName = button.textContent.trim();
+
+                    // Kategoriye göre filtreleme işlemi
+                    productCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (categoryName === 'Tümü' || cardCategory === categoryName) {
+                            card.style.display = 'block';
+                        } 
+                        else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
